@@ -62,13 +62,17 @@ jobs:
             echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
             # Pull Docker image from Docker Hub
-            docker pull ${{ secrets.DOCKER_USERNAME }}/deployfinal:latest
+            docker pull deployfinal:latest
 
-            # Clone docker-compose repository
-            git clone https://github.com/iumar28/deployfinal
+            # Clone the repository (remove if exists)
+            if [ -d "deploypostgre" ]; then
+              rm -rf deploypostgre
+            fi
+            git clone https://github.com/iumar28/deploypostgre
 
-            cd deployfinal
+            cd deploypostgre
 
             # Build and deploy the Docker image
+            docker build -t iumar28/deploypostgre .
             docker-compose up -d
           EOF

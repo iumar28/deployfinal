@@ -13,7 +13,7 @@ services:
       - app-network
 
   jhipster:
-    image: iumar28/deployfinal:postgres
+    image: deployfinal:postgres
     container_name: deployfinal
     depends_on:
       - postgres
