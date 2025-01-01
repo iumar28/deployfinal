@@ -13,7 +13,7 @@ services:
       - app-network
 
   jhipster:
-    image: ${DOCKER_USERNAME}/deployfinal:postgres
+    image: ${{secrets.DOCKER_USERNAME}}/deployfinal:postgres
     container_name: deployfinal
     depends_on:
       - postgres
